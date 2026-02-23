@@ -333,4 +333,3 @@ ray_init:
 
   # Path to save Ray timeline JSON for performance profiling
   timeline_json_file: null
-  temp_dir: /media/Disk1/QiuJihao/RL/ray_session
