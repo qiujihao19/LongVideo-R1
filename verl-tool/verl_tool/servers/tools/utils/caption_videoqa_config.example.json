@@ -1,0 +1,17 @@
+{
+  "openai": {
+    "api_key": "your_api_key",
+    "base_url": "http://127.0.0.1:9081/v1",
+    "videoqa_model": "Qwen3-VL-32B"
+  },
+  "data_source_paths": {
+    "videocaption_cgbench": {
+      "caption_dir": "/path/to/cgbench_caption",
+      "video_dir": "/path/to/cgbench_video"
+    },
+    "videocaption_videomme": {
+      "caption_dir": "/path/to/videomme_caption",
+      "video_dir": "/path/to/videomme_video"
+    }
+  }
+}
