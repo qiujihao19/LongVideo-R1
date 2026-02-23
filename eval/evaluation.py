@@ -242,6 +242,16 @@ def run_all(eval_data_file, eval_dataset, video_base_path, caption_base_path, sa
                 f.write(json.dumps(result, ensure_ascii=False) + '\n')
 
     print(f"Saved results to {save_file}")
+
+    with open(save_file, 'r') as f:
+        lines = f.readlines()
+        result_data = [json.loads(line) for line in lines]
+    all_correct = 0
+    for da in result_data:
+        if da['pred'] == da['answer']:
+            all_correct += 1
+    print(f"Accuracy: {all_correct}/{len(result_data)} = {all_correct/len(result_data):.4f}")
+    
         
 def parse_args():
     parser = ArgumentParser()

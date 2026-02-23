@@ -1,5 +1,5 @@
 {
   "get_caption": {
-    "config_path": "/absolute/path/to/LongVideo-R1/verl-tool/verl_tool/servers/tools/utils/caption_videoqa_config.example.json"
+    "config_path": "LongVideo-R1/verl-tool/verl_tool/servers/tools/utils/caption_videoqa_config.example.json"
   }
 }

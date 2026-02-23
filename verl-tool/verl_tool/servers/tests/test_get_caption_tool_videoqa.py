@@ -19,17 +19,17 @@ def test_python(
     action = """<think>dahdohawdaw</think><tool>video_qa((1,1,1),\"What shape does the protagonist in the video make when he spreads seasoning on the bread?\")</tool>"""
     print(_send_test_request(url, trajectory_id, action, "get_caption"))
     
-    # print("--- Testing 2 ---")
-    # action = """<think>dahdohawdaw</think><tool>get_caption((1,3,3))</tool>"""
-    # print(_send_test_request(url, trajectory_id, action, "get_caption"))
+    print("--- Testing 2 ---")
+    action = """<think>dahdohawdaw</think><tool>get_caption((1,3,3))</tool>"""
+    print(_send_test_request(url, trajectory_id, action, "get_caption"))
     
-    # print("--- Testing 3 ---")
-    # action = """<think>dahdohawdaw</think><tool>get_caption((1,3))</tool>"""
-    # print(_send_test_request(url, trajectory_id, action, "get_caption"))
+    print("--- Testing 3 ---")
+    action = """<think>dahdohawdaw</think><tool>get_caption((1,3))</tool>"""
+    print(_send_test_request(url, trajectory_id, action, "get_caption"))
     
-    # print("--- Testing 4 ---")
-    # action = """<think>dahdohawdaw</think><answer>A</answer>"""
-    # print(_send_test_request(url, trajectory_id, action, "get_caption"))
+    print("--- Testing 4 ---")
+    action = """<think>dahdohawdaw</think><answer>A</answer>"""
+    print(_send_test_request(url, trajectory_id, action, "get_caption"))
     return True
     
     

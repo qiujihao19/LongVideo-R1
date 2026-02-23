@@ -18,8 +18,8 @@ from PIL import Image
 
 # Defaults aligned with eval/constant.py
 DEFAULT_REASONING_MODEL = "longvideor1"
-DEFAULT_VIDEOQA_MODEL = "Qwen2.5-VL-32B"
-DEFAULT_CAPTION_MODEL = "Qwen2.5-VL-32B"
+DEFAULT_VIDEOQA_MODEL = "Qwen3-VL-32B"
+DEFAULT_CAPTION_MODEL = "Qwen3-VL-32B"
 DEFAULT_REASONING_BASE_URL = "http://127.0.0.1:25600/v1"
 DEFAULT_VIDEOQA_BASE_URL = "http://127.0.0.1:9081/v1"
 DEFAULT_CAPTION_BASE_URL = "http://127.0.0.1:9081/v1"
@@ -30,8 +30,8 @@ VIDEOQA_FRAME_NUM = 16
 SEGMENT_LEN = 16
 MIN_CUBE_WIDTH = 4
 MAX_CUBE_WIDTH = 8
-MIN_SAMPLE_FRAME_NUM = 32
-HIGH_LEVEL_CAPTION_WORDS = 400
+MIN_SAMPLE_FRAME_NUM = 16
+HIGH_LEVEL_CAPTION_WORDS = 300
 LOW_LEVEL_CAPTION_WORDS = 200
 
 
@@ -537,9 +537,8 @@ class LongVideoDemo:
 
 def parse_args():
     parser = argparse.ArgumentParser(description="LongVideo-R1 online demo CLI")
-    # parser.add_argument("--video_path", type=str, required=True)
-    parser.add_argument("--video_path", type=str, default="/media/Disk2/Dataset/CG-Bench/cg_videos_720p/-DAp0zXkd6A.mp4")
-    parser.add_argument("--question", type=str, default='What is the man doing in this video?', help="Single question. If omitted, enter interactive mode")
+    parser.add_argument("--video_path", type=str, required=True)
+    parser.add_argument("--question", type=str, help="Single question. If omitted, enter interactive mode")
     parser.add_argument("--cache_dir", type=str, default=".caption_cache")
     parser.add_argument("--max_rounds", type=int, default=30)
 
