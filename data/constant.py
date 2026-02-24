@@ -57,7 +57,7 @@ CAPTION_SYSTEM_PROMPT_LOW = '''
     1)Enrich the caption with contextual details such as location, environment, lighting, weather, people's clothing, and atmosphere, while keeping it visually accurate.
     ### Output Format:
     Your response should be in the following format, wrapped with <caption></caption> tags: "<caption>This clip (video) XXX</caption>".
-    The description should be strictly controlled within {num_words} words.
+    The description should be strictly controlled within {num_word} words.
 '''
 
 
