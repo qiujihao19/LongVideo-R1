@@ -21,7 +21,7 @@ We provide two versions of the model:
 ## 📚 Contents Link
 
 - [Data Generation](data_generation.md)
-- [Two Stage Training](two_stage_training.md)
+- [Two Stage Training](training.md)
 - [Evaluation](evaluation.md)
 
 
