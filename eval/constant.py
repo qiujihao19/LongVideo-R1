@@ -1,7 +1,7 @@
 # reasoning model name for your local server
 REASONING_MODEL = 'longvideor1'
 # model for video question answering for your local server
-VIDEOQA_MODEL = 'Qwen-3-VL-32B'
+VIDEOQA_MODEL = 'Qwen3-VL-32B'
 # image size limits for video question answering
 VIDEOQA_IMAGE_MAX_LENGTH = 1024
 # number of frames for video question answering

@@ -1,18 +1,28 @@
 # LongVideo-R1: Smart Navigation for Low-cost Long Video Understanding
 This is the official implementaion of paper '[***LongVideo-R1: Smart Navigation for Low-cost Long Video Understanding***]()', which is accepted in ***CVPR 2026***.
 
-[[📖 Paper]()] [[🤗 LongVideo-R1-model]()] [[🤗 LongVideo-R1-data]()] 
+​                                                   [[📖 Paper]()] [[🤗 LongVideo-R1-Qwen2.5](https://huggingface.co/ChurchillQAQ/LongVideo-R1-Qwen2.5)] [[🤗 LongVideo-R1-Qwen3]()]  [[🤗 LongVideo-R1-Data](https://huggingface.co/datasets/ChurchillQAQ/LongVideo-R1-Data)] 
 
 
 ## Abstract
 
 This paper addresses the critical and underexplored challenge of long video understanding with low computational budgets. We propose LongVideo-R1, an active, reasoning-equipped multimodal large language model (MLLM) agent designed for efficient video context navigation, avoiding the redundancy of exhaustive search. At the core of LongVideo-R1 lies a reasoning module that leverages high-level visual cues to infer the most informative video clip for subsequent processing. During inference, the agent initiates traversal from top-level visual summaries and iteratively refines its focus, immediately halting the exploration process upon acquiring sufficient knowledge to answer the query. To facilitate training, we first extract hierarchical video captions from CGBench, a video corpus with grounding annotations, and guide GPT-5 to generate 33K high-quality chain-of-thought-with-tool trajectories. The LongVideo-R1 agent is fine-tuned upon the Qwen-3-8B model through a two-stage paradigm: supervised fine-tuning (SFT) followed by reinforcement learning (RL), where RL employs a specifically designed reward function to maximize selective and efficient clip navigation. Experiments on multiple long video benchmarks validate the effectiveness of name, which enjoys superior tradeoff between QA accuracy and efficiency. 
 
+## Model Download
+
+We provide two versions of the model:
+
+1. [**LongVideo-R1-Qwen2.5**](https://huggingface.co/ChurchillQAQ/LongVideo-R1-Qwen2.5): obtained by performing SFT and RL using **Qwen3-8B** as the reasoning model, **Qwen2.5-VL-72B** as the caption model, and **Qwen2.5-VL-32B** as the video_qa model.
+2. **LongVideo-R1-Qwen3**: obtained by performing SFT and RL using **Qwen3-8B** as the reasoning model, and **Qwen3-VL-32B** as both the caption model and video_qa model. **This model will be released in a few days**.
+
+**LongVideo-R1-Qwen3** delivers better performance.
+
+
 ## 📚 Contents Link
 
-- [Data Generation](./data_generation.md)
-- [Two Stage Training](./training.md)
-- [Evaluation](./evaluation.md)
+- [Data Generation](./assets/docs/install.md)
+- [Two Stage Training](./assets/docs/sync_design.md)
+- [Evaluation](./assets/docs/asyncRL.md)
 
 
 ## Cli Demo
@@ -30,6 +40,8 @@ python cli.py \
   --caption_base_url http://127.0.0.1:9081/v1 \
   --videoqa_base_url http://127.0.0.1:9081/v1
 ```
+
+
 
 ## Acknowledgement
 

@@ -1,6 +1,6 @@
 {
   "cgbench": {
-    "file_name": "longvideor1-sft-data.json",
+    "file_name": "longvideor1-sft-qwen3-llamafactory.json",
     "columns": {
       "history": "history",
       "prompt": "instruction",

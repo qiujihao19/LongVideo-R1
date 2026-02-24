@@ -5,9 +5,9 @@
 # export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:False
 set -x
 val_before_train=False
-model_name="path/to/sft_model"
-train_data="path/to/rl_data.parquet"
-val_data="path/to/val.parquet"
+model_name="path/to/longvideor1-sft"
+train_data="path/to/LongVideo-R1-data/rl_data/longvideor1-rl-train-data-qwen3.parquet"
+val_data=$train_data
 save_path="path/to/checkpoints"
 rollout_data_dir="path/to/rollout_data_dir"
 validation_data_dir="path/to/val_gen"

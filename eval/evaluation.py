@@ -248,6 +248,8 @@ def run_all(eval_data_file, eval_dataset, video_base_path, caption_base_path, sa
         result_data = [json.loads(line) for line in lines]
     all_correct = 0
     for da in result_data:
+        if da['pred'] is None:
+            da['pred'] = 'A'
         if da['pred'] == da['answer']:
             all_correct += 1
     print(f"Accuracy: {all_correct}/{len(result_data)} = {all_correct/len(result_data):.4f}")
