@@ -392,7 +392,11 @@ class LongVideoDemo:
 
         content = resp.choices[0].message.content
         parsed = extract_tags(content, ["caption"])
-        caption = parsed.get("caption", content)
+        if "caption" not in parsed:
+            caption = f'<caption>{content}</caption>'
+        else:
+            caption = f'<caption>{parsed.get("caption", content)}</caption>'
+
 
         self.cache.put(level, key, {
             "caption": caption,
