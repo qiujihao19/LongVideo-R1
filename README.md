@@ -33,6 +33,37 @@ LongVideo-R1, caption model, and video_qa model should be deployed in vllm serve
 Example command:
 
 ```bash
+#Deploy the reasoning model.
+MODEL_PATH="path/to/LongVideo-R1"
+PORT=25600
+
+echo "Starting GPU 0 vLLM serve (Port $PORT)..."
+CUDA_VISIBLE_DEVICES=0 vllm serve $MODEL_PATH \
+--tensor-parallel-size 1 \
+--max-model-len 32768 \
+--gpu-memory-utilization 0.85 \
+--host 127.0.0.1 \
+--port $PORT \
+--served-model-name longvideor1 
+
+#Deploy the caption and video_qa model.
+MODEL_PATH="path/to/Qwen3-VL-32B-Instruct"
+PORT=9081
+GPU_PAIR="6,7"
+
+echo "Starting GPU ${GPU_PAIR} vLLM serve (Port $PORT)..."
+CUDA_VISIBLE_DEVICES=$GPU_PAIR nohup vllm serve $MODEL_PATH \
+--tensor-parallel-size 2 \
+--max-model-len 16384 \
+--gpu-memory-utilization 0.85 \
+--host 127.0.0.1 \
+--port $PORT \
+--mm-processor-cache-gb 0 \
+--served-model-name Qwen3-VL-32B 
+```
+
+
+```bash
 python cli.py \
   --video_path /path/to/video.mp4 \
   --question "What is the man doing in this video?" \
