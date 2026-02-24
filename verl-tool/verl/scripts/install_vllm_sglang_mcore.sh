@@ -48,6 +48,10 @@ pip install opencv-fixer && \
 pip install decord
 pip install pysrt
 
+pip install torchao==0.13.0
+
+pip install ray==2.49.1
+
 if [ $USE_MEGATRON -eq 1 ]; then
     echo "6. Install cudnn python package (avoid being overridden)"
     pip install nvidia-cudnn-cu12==9.8.0.87

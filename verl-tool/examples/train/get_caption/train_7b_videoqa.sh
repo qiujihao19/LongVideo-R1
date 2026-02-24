@@ -12,6 +12,7 @@ save_path="path/to/checkpoints"
 rollout_data_dir="path/to/rollout_data_dir"
 validation_data_dir="path/to/val_gen"
 tool_config_path="./verl_tool/servers/tool_init_config.example.json"
+reward_function_path="./verl/verl/utils/reward_score/longvideor1_score.py"
 rl_alg=grpo # gae(ppo) or grpo, if grpo, then better set n>1 otherwise the group norm can not be effective
 n_gpus_per_node=6
 n_nodes=1
@@ -159,7 +160,8 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5 PYTHONUNBUFFERED=1 python3 -m verl_tool.trainer
     trainer.test_freq=5000 \
     trainer.total_epochs=$total_epochs \
     trainer.rollout_data_dir=$rollout_data_dir \
-    trainer.validation_data_dir=$validation_data_dir 
+    trainer.validation_data_dir=$validation_data_dir \
+    custom_reward_function.path=$reward_function_path
 
 
 pkill -P -9 $retriever_pid

@@ -36,6 +36,7 @@ conda activate verl-tool
 cd verl-tool
 cd verl
 USE_MEGATRON=0 bash scripts/install_vllm_sglang_mcore.sh
+pip install --no-deps -e .
 cd ..
 pip install -e ".[vllm]"
 ```
