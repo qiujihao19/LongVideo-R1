@@ -1,12 +1,10 @@
 import argparse
 import ast
 import base64
-from concurrent.futures import ThreadPoolExecutor, as_completed
 import hashlib
 import json
 import os
 import re
-import threading
 import time
 from io import BytesIO
 from pathlib import Path
@@ -184,7 +182,6 @@ class OnlineCaptionCache:
         self.video_path = os.path.abspath(video_path)
         self.width = width
         self.num_frames = num_frames
-        self._lock = threading.RLock()
         self.data = self._load_or_init()
 
     def _load_or_init(self):
@@ -213,19 +210,16 @@ class OnlineCaptionCache:
         }
 
     def _save(self):
-        with self._lock:
-            os.makedirs(os.path.dirname(self.cache_path), exist_ok=True)
-            with open(self.cache_path, "w", encoding="utf-8") as f:
-                json.dump(self.data, f, ensure_ascii=False, indent=2)
+        os.makedirs(os.path.dirname(self.cache_path), exist_ok=True)
+        with open(self.cache_path, "w", encoding="utf-8") as f:
+            json.dump(self.data, f, ensure_ascii=False, indent=2)
 
     def get(self, level: str, key: str):
-        with self._lock:
-            return self.data[level].get(key)
+        return self.data[level].get(key)
 
     def put(self, level: str, key: str, value: dict):
-        with self._lock:
-            self.data[level][key] = value
-            self._save()
+        self.data[level][key] = value
+        self._save()
 
 
 class LongVideoDemo:
@@ -233,8 +227,6 @@ class LongVideoDemo:
         self.video_path = args.video_path
         self.max_rounds = args.max_rounds
         self.decode_threads = args.decode_threads
-        self.high_caption_workers = args.high_caption_workers
-        self._timing_lock = threading.Lock()
 
         # Reuse one VideoReader instance to avoid repeated open/decode init overhead.
         self.vr = VideoReader(self.video_path, ctx=cpu(0), num_threads=self.decode_threads)
@@ -354,13 +346,6 @@ class LongVideoDemo:
             "video_qa_model_calls": 0,
         }
 
-    def _add_timing(self, timing_stats: Dict[str, float], seconds_key: str, calls_key: str, delta: float):
-        if timing_stats is None:
-            return
-        with self._timing_lock:
-            timing_stats[seconds_key] += delta
-            timing_stats[calls_key] += 1
-
     def get_caption(self, ids: Tuple[int, ...], timing_stats: Dict[str, float] = None):
         self._validate_ids(ids)
         level, key = self._segment_key(ids)
@@ -388,15 +373,13 @@ class LongVideoDemo:
         )
         model_elapsed = time.time() - model_start
         print(f"[Timing][get_caption:model_only] {model_elapsed:.3f}s")
-        self._add_timing(timing_stats, "get_caption_model_seconds", "get_caption_model_calls", model_elapsed)
+        if timing_stats is not None:
+            timing_stats["get_caption_model_seconds"] += model_elapsed
+            timing_stats["get_caption_model_calls"] += 1
 
         content = resp.choices[0].message.content
         parsed = extract_tags(content, ["caption"])
-        if "caption" not in parsed:
-            caption = f'<caption>{content}</caption>'
-        else:
-            caption = f'<caption>{parsed.get("caption", content)}</caption>'
-
+        caption = parsed.get("caption", content)
 
         self.cache.put(level, key, {
             "caption": caption,
@@ -419,7 +402,9 @@ class LongVideoDemo:
         )
         model_elapsed = time.time() - model_start
         print(f"[Timing][video_qa:model_only] {model_elapsed:.3f}s")
-        self._add_timing(timing_stats, "video_qa_model_seconds", "video_qa_model_calls", model_elapsed)
+        if timing_stats is not None:
+            timing_stats["video_qa_model_seconds"] += model_elapsed
+            timing_stats["video_qa_model_calls"] += 1
 
         content = resp.choices[0].message.content
         parsed = extract_tags(content, ["answer"])
@@ -441,20 +426,8 @@ class LongVideoDemo:
             "text": f"The total duration of the video is {duration} seconds.",
         })
 
-        high_results = {}
-        max_workers = max(1, min(self.width, self.high_caption_workers))
-        with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            futures = {
-                executor.submit(self.get_caption, (h,), timing_stats): h
-                for h in range(1, self.width + 1)
-            }
-            for future in as_completed(futures):
-                h = futures[future]
-                caption, frame_time = future.result()
-                high_results[h] = (caption, frame_time)
-
         for h in range(1, self.width + 1):
-            caption, frame_time = high_results[h]
+            caption, frame_time = self.get_caption((h,), timing_stats=timing_stats)
             messages[-1]["content"].append({
                 "type": "text",
                 "text": f"High-level Caption {h} from {frame_time[0]} to {frame_time[-1]}: {caption}",
@@ -580,7 +553,6 @@ def parse_args():
     parser.add_argument("--videoqa_base_url", type=str, default=DEFAULT_VIDEOQA_BASE_URL)
     parser.add_argument("--videoqa_model", type=str, default=DEFAULT_VIDEOQA_MODEL)
     parser.add_argument("--decode_threads", type=int, default=16, help="decord VideoReader decode threads")
-    parser.add_argument("--high_caption_workers", type=int, default=4, help="parallel workers for high-level caption generation")
     return parser.parse_args()
 
 
@@ -589,7 +561,6 @@ def main():
     demo = LongVideoDemo(args)
 
     print(f"[Init] width={demo.width}, cache={demo.cache.cache_path}")
-
 
     if args.question is not None:
         result = demo.answer_question(args.question)
