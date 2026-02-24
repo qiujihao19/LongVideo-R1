@@ -52,7 +52,7 @@ PORT=9081
 GPU_PAIR="6,7"
 
 echo "Starting GPU ${GPU_PAIR} vLLM serve (Port $PORT)..."
-CUDA_VISIBLE_DEVICES=$GPU_PAIR nohup vllm serve $MODEL_PATH \
+CUDA_VISIBLE_DEVICES=$GPU_PAIR vllm serve $MODEL_PATH \
 --tensor-parallel-size 2 \
 --max-model-len 16384 \
 --gpu-memory-utilization 0.85 \
@@ -76,7 +76,7 @@ python cli.py \
 
 ## Acknowledgement
 
-This project is based on LLaMA-Factory ([paper](https://arxiv.org/pdf/2403.13372)), [code](https://github.com/hiyouga/LlamaFactory)), verl-tool([paper](https://arxiv.org/pdf/2509.01055), [code](https://github.com/TIGER-AI-Lab/verl-tool)), verl([code](https://github.com/verl-project/verl)), thanks for their excellent works.
+This project is based on LLaMA-Factory ([paper](https://arxiv.org/pdf/2403.13372), [code](https://github.com/hiyouga/LlamaFactory)), verl-tool([paper](https://arxiv.org/pdf/2509.01055), [code](https://github.com/TIGER-AI-Lab/verl-tool)), verl([code](https://github.com/verl-project/verl)), thanks for their excellent works.
 
 ## Citation
 If you find LongVideo-R1 useful for your research and applications, please consider giving us a star ⭐ and citing it by the following BibTeX entry:
