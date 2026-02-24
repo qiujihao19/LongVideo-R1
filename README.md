@@ -38,10 +38,5 @@ This project is based on LLaMA-Factory ([paper](https://arxiv.org/pdf/2403.13372
 ## Citation
 If you find LongVideo-R1 useful for your research and applications, please consider giving us a star ⭐ and citing it by the following BibTeX entry:
 ```
-@article{tang2025adaptive,
-  title={Adaptive Keyframe Sampling for Long Video Understanding},
-  author={Tang, Xi and Qiu, Jihao and Xie, Lingxi and Tian, Yunjie and Jiao, Jianbin and Ye, Qixiang},
-  journal={arXiv preprint arXiv:2502.21271},
-  year={2025}
-}
+
 ```
