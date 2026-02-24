@@ -6,11 +6,11 @@
   },
   "data_source_paths": {
     "videocaption_cgbench": {
-      "caption_dir": "/path/to/cgbench_caption",
+      "caption_dir": "/path/to/LongVideo-R1-data/captions/cgbench_captions/qwen3-vl-32b-captions-wsub",
       "video_dir": "/path/to/cgbench_video"
     },
     "videocaption_videomme": {
-      "caption_dir": "/path/to/videomme_caption",
+      "caption_dir": "/path/to/LongVideo-R1-data/captions/videomme_captions/qwen3-vl-32b-captions-wsub",
       "video_dir": "/path/to/videomme_video"
     }
   }
