@@ -48,9 +48,9 @@ def process_level(
     else:
         sub_data = None
     if len(level_data['video']) <= 32:
-        messages = format_message(level_data['video'], level_data['time'], sub_data, CAPTION_SYSTEM_PROMPT_LOW.format(num_frame=len(level_data['video']), num_words=LOW_LEVEL_CAPTION_WORDS))
+        messages = format_message(level_data['video'], level_data['time'], sub_data, CAPTION_SYSTEM_PROMPT_LOW.format(num_frame=len(level_data['video']), num_word=LOW_LEVEL_CAPTION_WORDS))
     else:
-        messages = format_message(level_data['video'], level_data['time'], sub_data, CAPTION_SYSTEM_PROMPT.format(num_frame=len(level_data['video']), num_words=HIGH_LEVEL_CAPTION_WORDS))
+        messages = format_message(level_data['video'], level_data['time'], sub_data, CAPTION_SYSTEM_PROMPT.format(num_frame=len(level_data['video']), num_word=HIGH_LEVEL_CAPTION_WORDS))
     result = {}
     response = client.chat.completions.create(
         model=model,
