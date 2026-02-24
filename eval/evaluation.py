@@ -1,5 +1,5 @@
 from constant import *
-from .utils import *
+from utils import *
 from openai import OpenAI
 import json
 from tqdm import tqdm
@@ -176,23 +176,23 @@ def run_multistep_vqa(file_path, video_path, user_prompt, max_rounds=30):
 def process_one_entry(da, eval_dataset, video_base_path, caption_base_path, max_rounds=20):
     if eval_dataset == 'lvbench':
         videoid = da['key']
-        file_path = f"{caption_base_path}/{videoid}.json"
-        video_path = f"{video_base_path}/{videoid}.mp4"
+        file_path = os.path.join(caption_base_path, f"{videoid}.json")
+        video_path = os.path.join(video_base_path, f"{videoid}.mp4")
         question = da['question']
 
         user_prompt = f"{question}\n"
     elif eval_dataset == 'videomme_long':
         videoid = da['videoID']
-        file_path = f"{caption_base_path}/{videoid}.json"
-        video_path = f"{video_base_path}/{videoid}.mp4"
+        file_path = os.path.join(caption_base_path, f"{videoid}.json")
+        video_path = os.path.join(video_base_path, f"{videoid}.mp4")
         question = da['question']
         option = da['options']
         option = '\n'.join(option)
         user_prompt = f"{question}\n{option}\n"
     elif eval_dataset == 'mlvu':
         videoid = da['video_name'].split('.')[0]
-        file_path = f"{caption_base_path}/{videoid}.json"
-        video_path = f"{video_base_path}/{videoid}.mp4"
+        file_path = os.path.join(caption_base_path, f"{videoid}.json")
+        video_path = os.path.join(video_base_path, f"{videoid}.mp4")
         question = da['question']
         user_prompt = f"{question}\n"
     else:

@@ -70,6 +70,6 @@ PREFIX = 'Select the best answer to the following multiple-choice question based
 
 VIDEO_QA_SYSTEM_PROMPT = '''
 You are a video question-answering model. You will be given a video segment and a question. Your task is to summarize the information relevant to the question based on the provided video segment.
-You must think first before answering. Your thinking process should be in <think></think> tags. Your answer should be in <answer></answer> tags.
+You must think first before answering. Your thinking process should be in <reasoning></reasoning> tags. Your answer should be in <answer></answer> tags.
 If the question is not related to the video, just answer "<answer>The question is not related to the video segment.</answer>".
 '''

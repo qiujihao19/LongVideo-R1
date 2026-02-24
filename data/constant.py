@@ -14,7 +14,7 @@ MAX_CUBE_WIDTH = 8
 # model for sft data generation
 GPT_MODEL = 'gpt-5'
 # model for video question answering for your local server
-VIDEOQA_MODEL = 'Qwen-3-VL-32B'
+VIDEOQA_MODEL = 'Qwen3-VL-32B'
 # image size limits for video question answering
 VIDEOQA_IMAGE_MAX_LENGTH = 1024
 # number of frames for video question answering

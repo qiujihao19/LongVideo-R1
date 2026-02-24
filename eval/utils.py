@@ -36,6 +36,7 @@ def encode_image(image_path):
 def sample_video_woid(video):    
     sampled_video = video  
     sampled_video = [encode_image(frame) for frame in sampled_video]
+    return sampled_video
 
 
 def extract_and_validate(text):
@@ -186,29 +187,4 @@ def prepare_video_wid(video_path, segment_id, width):
     print("Video data prepared successfully.")
     return low_segment_data
 
-def get_video_qa_observation(
-    video_path: str,
-    segment_id: str,
-    query: str,
-    width: int,
-    client,
-    model
-):  
 
-    image_list = os.listdir(video_path)
-    image_list = sorted(image_list, key=lambda x: int(x.split('_')[0]))
-    image_chunk = np.array_split(image_list, width ** 3)
-    high_segment_id, medium_segment_id, low_segment_id = map(int, segment_id)
-    image_chunk = image_chunk[(high_segment_id - 1) * width * width + (medium_segment_id - 1) * width + low_segment_id - 1]
-    frame_time = [int(img.split('_')[1].split('.')[0]) for img in image_chunk]
-    image_chunk = [os.path.join(video_path, img) for img in image_chunk]
-    video = [encode_image(img) for img in image_chunk]
-    messages = video_qa_format_message(video, frame_time, query)
-    response = client.chat.completions.create(
-        model=model,
-        messages=messages,
-        max_tokens=1024,
-    )
-    video_qa_observation = response.choices[0].message.content
-
-    return video_qa_observation
