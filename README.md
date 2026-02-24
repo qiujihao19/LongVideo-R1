@@ -20,9 +20,9 @@ We provide two versions of the model:
 
 ## 📚 Contents Link
 
-- [Data Generation](./assets/docs/install.md)
-- [Two Stage Training](./assets/docs/sync_design.md)
-- [Evaluation](./assets/docs/asyncRL.md)
+- [Data Generation](data_generation.md)
+- [Two Stage Training](two_stage_training.md)
+- [Evaluation](evaluation.md)
 
 
 ## Cli Demo
