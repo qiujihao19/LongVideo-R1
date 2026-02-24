@@ -40,7 +40,6 @@ def run_ppo(config) -> None:
             # runtime_env={"env_vars": {"RAY_DEBUG": "legacy", "RAY_DEBUG_POST_MORTEM": "1","TOKENIZERS_PARALLELISM": "true", "NCCL_DEBUG": "WARN", "VLLM_LOGGING_LEVEL": "WARN", "VLLM_ALLOW_RUNTIME_LORA_UPDATING": "true", "VLLM_USE_V1": os.getenv("VLLM_USE_V1", "1")}},
             runtime_env={"env_vars": {"RAY_DEBUG": "1","TOKENIZERS_PARALLELISM": "true", "NCCL_DEBUG": "WARN", "VLLM_LOGGING_LEVEL": "WARN", "VLLM_ALLOW_RUNTIME_LORA_UPDATING": "true", "VLLM_USE_V1": os.getenv("VLLM_USE_V1", "1")}},
             num_cpus=config.ray_init.num_cpus,
-            _temp_dir=config.ray_init.temp_dir,
         )
 
     # Create a remote instance of the TaskRunner class, and
