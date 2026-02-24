@@ -45,6 +45,8 @@ pip install opencv-python
 pip install opencv-fixer && \
     python -c "from opencv_fixer import AutoFix; AutoFix()"
 
+pip install decord
+pip install pysrt
 
 if [ $USE_MEGATRON -eq 1 ]; then
     echo "6. Install cudnn python package (avoid being overridden)"
