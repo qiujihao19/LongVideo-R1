@@ -1,5 +1,5 @@
 # LongVideo-R1: Smart Navigation for Low-cost Long Video Understanding
-This is the official implementaion of paper '[***LongVideo-R1: Smart Navigation for Low-cost Long Video Understanding***]()', which is accepted in ***CVPR 2026***.
+This is the official implementaion of paper '[***LongVideo-R1: Smart Navigation for Low-cost Long Video Understanding***](https://arxiv.org/pdf/2602.20913)', which is accepted in ***CVPR 2026***.
 
 ​                                                   [[📖 Paper](https://arxiv.org/pdf/2602.20913)] [[🤗 LongVideo-R1-Qwen2.5](https://huggingface.co/ChurchillQAQ/LongVideo-R1-Qwen2.5)] [[🤗 LongVideo-R1-Qwen3]()]  [[🤗 LongVideo-R1-Data](https://huggingface.co/datasets/ChurchillQAQ/LongVideo-R1-Data)] 
 
