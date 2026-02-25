@@ -4,11 +4,19 @@ This is the official implementaion of paper '[***LongVideo-R1: Smart Navigation 
 ​                                                   [[📖 Paper](https://arxiv.org/pdf/2602.20913)] [[🤗 LongVideo-R1-Qwen2.5](https://huggingface.co/ChurchillQAQ/LongVideo-R1-Qwen2.5)] [[🤗 LongVideo-R1-Qwen3]()]  [[🤗 LongVideo-R1-Data](https://huggingface.co/datasets/ChurchillQAQ/LongVideo-R1-Data)] 
 
 
-## Abstract
+## 👀 Abstract
 
 This paper addresses the critical and underexplored challenge of long video understanding with low computational budgets. We propose LongVideo-R1, an active, reasoning-equipped multimodal large language model (MLLM) agent designed for efficient video context navigation, avoiding the redundancy of exhaustive search. At the core of LongVideo-R1 lies a reasoning module that leverages high-level visual cues to infer the most informative video clip for subsequent processing. During inference, the agent initiates traversal from top-level visual summaries and iteratively refines its focus, immediately halting the exploration process upon acquiring sufficient knowledge to answer the query. To facilitate training, we first extract hierarchical video captions from CGBench, a video corpus with grounding annotations, and guide GPT-5 to generate 33K high-quality chain-of-thought-with-tool trajectories. The LongVideo-R1 agent is fine-tuned upon the Qwen-3-8B model through a two-stage paradigm: supervised fine-tuning (SFT) followed by reinforcement learning (RL), where RL employs a specifically designed reward function to maximize selective and efficient clip navigation. Experiments on multiple long video benchmarks validate the effectiveness of name, which enjoys superior tradeoff between QA accuracy and efficiency. 
 
-## Model Download
+
+## 🏆 Performance
+<p align="center">
+    <img src="./figs/performance.png" width="80%"></a> <br>
+    The performance of LongVideo-R1.
+</p>
+
+
+## 🔗 Model Download
 
 We provide two versions of the model:
 
@@ -25,7 +33,7 @@ We provide two versions of the model:
 - [Evaluation](evaluation.md)
 
 
-## Cli Demo
+## 🔧 Cli Demo
 Use `cli.py` for online testing (tool use + multi-round reasoning).
 
 LongVideo-R1, caption model, and video_qa model should be deployed in vllm serve mode.
@@ -72,6 +80,10 @@ python cli.py \
   --videoqa_base_url http://127.0.0.1:9081/v1
 ```
 
+## Tips
+- We found that the evaluation results on H800 and A800 differ: the results on A800 are about 1 point lower on average than those on H800.
+
+- Our time calculation is obtained by computing each model individually without considering network latency and video frame extraction latency, and then combining the number of calls for each model.
 
 
 ## Acknowledgement
