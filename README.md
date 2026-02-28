@@ -93,5 +93,10 @@ This project is based on LLaMA-Factory ([paper](https://arxiv.org/pdf/2403.13372
 ## Citation
 If you find LongVideo-R1 useful for your research and applications, please consider giving us a star ⭐ and citing it by the following BibTeX entry:
 ```
-
+@article{qiu2026longvideo,
+  title={LongVideo-R1: Smart Navigation for Low-cost Long Video Understanding},
+  author={Qiu, Jihao and Xie, Lingxi and Huo, Xinyue and Tian, Qi and Ye, Qixiang},
+  journal={arXiv preprint arXiv:2602.20913},
+  year={2026}
+}
 ```
