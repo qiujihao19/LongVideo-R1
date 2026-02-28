@@ -1,7 +1,7 @@
 # LongVideo-R1: Smart Navigation for Low-cost Long Video Understanding
 This is the official implementaion of paper '[***LongVideo-R1: Smart Navigation for Low-cost Long Video Understanding***](https://arxiv.org/pdf/2602.20913)', which is accepted in ***CVPR 2026***.
 
-​                                                   [[📖 Paper](https://arxiv.org/pdf/2602.20913)] [[🤗 LongVideo-R1-Qwen2.5](https://huggingface.co/ChurchillQAQ/LongVideo-R1-Qwen2.5)] [[🤗 LongVideo-R1-Qwen3]()]  [[🤗 LongVideo-R1-Data](https://huggingface.co/datasets/ChurchillQAQ/LongVideo-R1-Data)] 
+​                                                   [[📖 Paper](https://arxiv.org/pdf/2602.20913)] [[🤗 LongVideo-R1-Qwen2.5](https://huggingface.co/ChurchillQAQ/LongVideo-R1-Qwen2.5)] [[🤗 LongVideo-R1-Qwen3](https://huggingface.co/ChurchillQAQ/LongVideo-R1-Qwen3)]  [[🤗 LongVideo-R1-Data](https://huggingface.co/datasets/ChurchillQAQ/LongVideo-R1-Data)] 
 
 
 ## 👀 Abstract
@@ -21,7 +21,7 @@ This paper addresses the critical and underexplored challenge of long video unde
 We provide two versions of the model:
 
 1. [**LongVideo-R1-Qwen2.5**](https://huggingface.co/ChurchillQAQ/LongVideo-R1-Qwen2.5): obtained by performing SFT and RL using **Qwen3-8B** as the reasoning model, **Qwen2.5-VL-72B** as the caption model, and **Qwen2.5-VL-32B** as the video_qa model.
-2. **LongVideo-R1-Qwen3**: obtained by performing SFT and RL using **Qwen3-8B** as the reasoning model, and **Qwen3-VL-32B** as both the caption model and video_qa model. **This model will be released in a few days**.
+2. [**LongVideo-R1-Qwen3**](https://huggingface.co/ChurchillQAQ/LongVideo-R1-Qwen3): obtained by performing SFT and RL using **Qwen3-8B** as the reasoning model, and **Qwen3-VL-32B** as both the caption model and video_qa model.
 
 **LongVideo-R1-Qwen3** delivers better performance.
 
