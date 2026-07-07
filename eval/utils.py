@@ -40,7 +40,7 @@ def sample_video_woid(video):
 
 
 def extract_and_validate(text):
-    tags = ['think', 'answer', 'tool']
+    tags = ['think', 'reasoning', 'answer', 'tool']
     results = {}
     for tag in tags:
         pattern = fr'<{tag}>(.*?)</{tag}>'
